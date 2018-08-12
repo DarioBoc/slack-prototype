@@ -1,5 +1,3 @@
-import Team from './team';
-
 const User = `
   type User {
     id: Int!
@@ -7,6 +5,15 @@ const User = `
     email: String!
     teams: [Team!]!
   }
+
+  type Query {
+    getUser(id: Int!): User!
+    allUsers: [User!]!
+  }
+
+  type Mutation {
+    createUser(username: String!, email: String!, password: String!): User!
+  }
 `;
 
-export default () => [User, Team];
+export default User;

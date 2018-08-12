@@ -1,6 +1,3 @@
-import Channel from './channel';
-import User from './user';
-
 const Message = `
   type Message {
     id: Int!
@@ -8,6 +5,10 @@ const Message = `
     user: User!
     channel: Channel!
   }
+
+  type Mutation {
+      createMessage(channelId: Int!, text: String!): Boolean!
+  }
 `
 
-export default () => [Message, User, Channel];
+export default Message;
