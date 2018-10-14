@@ -1,8 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import gql from "graphql-tag";
+import { ApolloProvider } from 'react-apollo';
+import ApolloClient from "apollo-boost";
+
+import Routes from './routes';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const client = new ApolloClient({
+    uri: "http://localhost:4000/"
+});
+
+const App = (
+    <ApolloProvider client={client}>
+        <Routes />
+    </ApolloProvider>
+);
+
+ReactDOM.render(App, document.getElementById('root'));
 registerServiceWorker();
