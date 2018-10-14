@@ -1,6 +1,8 @@
 import Sequelize from 'sequelize';
 
-const sequelize = new Sequelize('slack', 'postgres', 'da473186', {
+import config from '../config';
+
+const sequelize = new Sequelize(config.db.database, 'postgres', config.db.password, {
     dialect: 'postgres',
     define: {
         underscored: true
