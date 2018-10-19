@@ -9,6 +9,6 @@ const Message = `
   type Mutation {
       createMessage(channelId: Int!, text: String!): Boolean!
   }
-`
+`;
 
 export default Message;

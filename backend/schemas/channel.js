@@ -10,6 +10,6 @@ const Channel = `
   type Mutation {
       createChannel(teamId: Int!, name: String!, public: Boolean=false): Boolean!
   }
-`
+`;
 
 export default Channel;

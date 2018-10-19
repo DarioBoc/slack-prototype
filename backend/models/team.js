@@ -3,7 +3,7 @@ export default (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       unique: true,
-    }
+    },
   }, { underscored: true });
 
   Team.associate = (models) => {
