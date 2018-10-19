@@ -1,20 +1,25 @@
-import bcrypt from 'bcrypt';
+import validationError from '../utils/formatValidationError';
 
 export default {
-    Query: {
-        getUser: (parent, { id }, { models }) => models.User.findOne({ where: { id } }),
-        allUsers: (parent, args, { models }) => models.User.findAll(),
-    },
-    Mutation: {
-        register: async (parent, args, { models }) => {
-            try {
-                args.password = await bcrypt.hash(args.password, 12);
-                await models.User.create(args);
+  Query: {
+    getUser: (parent, { id }, { models }) => models.User.findOne({ where: { id } }),
+    allUsers: (parent, args, { models }) => models.User.findAll(),
+  },
+  Mutation: {
+    register: async (parent, args, { models }) => {
+      try {
+        const user = await models.User.create(args);
 
-                return true;
-            } catch (error) {
-                return false;
-            }
-        },
+        return {
+          ok: true,
+          user,
+        };
+      } catch (error) {
+        return {
+          ok: false,
+          errors: validationError(error, models),
+        };
+      }
     },
+  },
 };
